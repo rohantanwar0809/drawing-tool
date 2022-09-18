@@ -117,6 +117,7 @@ const polygonDraw = (e) => {
 
 const circleDraw = (e) => {
   const clientOffset = getClientOffset(e);
+  clearCanvas();
   ctx.beginPath();
   const currOffsetX = clientOffset.x;
   const currOffsetY = clientOffset.y;
@@ -125,8 +126,8 @@ const circleDraw = (e) => {
   ctx.moveTo(startOffsetX, startOffsetY + (currOffsetY - startOffsetY) / 2);
   ctx.bezierCurveTo(startOffsetX, startOffsetY, currOffsetX, startOffsetY, currOffsetX, startOffsetY + (currOffsetY - startOffsetY) / 2);
   ctx.bezierCurveTo(currOffsetX, currOffsetY, startOffsetX, currOffsetY, startOffsetX, startOffsetY + (currOffsetY - startOffsetY) / 2);
-  ctx.closePath();
   ctx.stroke();
+  ctx.closePath();
 }
 
 
@@ -156,7 +157,6 @@ const getClientOffset = (event) => {
 function drawPolygon() {
   ctx.fillStyle = 'white';
   ctx.lineWidth = 1;
-
   ctx.beginPath();
   ctx.moveTo(clicks[0].x, clicks[0].y);
   for (var i = 1; i < clicks.length; i++) {
